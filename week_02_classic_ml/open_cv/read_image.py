@@ -2,9 +2,9 @@
 # import the cv2 library
 import cv2
 
-img_color = cv2.imread("./resources/cat.jpg", cv2.IMREAD_COLOR)
-img_gray = cv2.imread("./resources/cat.jpg", cv2.IMREAD_GRAYSCALE)
-img_unchanged = cv2.imread("./resources/cat.jpg", cv2.IMREAD_UNCHANGED)
+img_color = cv2.imread("./resource/cat.jpg", cv2.IMREAD_COLOR)
+img_gray = cv2.imread("./resource/cat.jpg", cv2.IMREAD_GRAYSCALE)
+img_unchanged = cv2.imread("./resource/cat.jpg", cv2.IMREAD_UNCHANGED)
 
 #Displays image inside a window
 cv2.imshow('color image',img_color) 
