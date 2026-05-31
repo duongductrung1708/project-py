@@ -10,7 +10,7 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.ensemble import RandomForestClassifier
 # Đo độ chính xác
 from sklearn.metrics import accuracy_score
-from sklearn.ensemble import ExtraTreesClassifier
+
 # Đọc file CSV vào DataFrame
 df = pd.read_csv("./datasets/train.csv")
 
