@@ -21,8 +21,17 @@ print(df.info())
 print("\n===== KIỂM TRA NULL =====")
 print(df.isnull().sum())
 
+print("\n===== MÔ TẢ SỐ LIỆU =====")
+print(df.describe())
+
+print("\n===== KIỂM TRA DUPLICATES =====")
+print(df.duplicated().sum())
+
 # Tên cột target cần dự đoán
 target_column = "Heart Disease"
+
+print("\n===== PHÂN BỐ TARGET =====")
+print(df[target_column].value_counts())
 
 # Xóa cột target và id
 X = df.drop(columns=[target_column, "id"])
