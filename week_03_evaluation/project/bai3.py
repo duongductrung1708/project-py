@@ -29,3 +29,44 @@ cv2.imshow('Anh Nhieu Color', image_noisy)
 cv2.imshow('Anh Phuc Hoi Color', image_denoised)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
+# import cv2
+# import numpy as np
+
+# # Đọc ảnh màu dưới dạng ma trận 3 chiều
+# image = cv2.imread("./data/exe_3.webp", cv2.IMREAD_COLOR)
+
+# # Chuyển sang float32
+# image_float = image.astype(np.float32)
+
+# # Mô phỏng chụp cùng một ảnh N lần với nhiễu Gaussian
+# N = 5000
+# # Độ mạnh của Gaussian Noise
+# std_noise = 50
+
+# # Mâm thép khổng lồ để cộng dồn N ảnh màu
+# # Dùng float64 để tránh tràn số khi cộng N lần (dù giá trị vượt 255)
+# sum_images = np.zeros(image_float.shape, dtype=np.float64)
+
+# print(f"Đang xử lý averaging {N} khung hình màu...")
+
+# # Vòng lặp cộng dồn
+# for i in range(N):
+#     noise = np.random.normal(0, std_noise, image_float.shape)
+#     sum_images += (image_float + noise)
+
+# # Lấy trung bình cộng và Clip 1 lần duy nhất ở cuối
+# image_averaged = sum_images / N
+# image_denoised = np.clip(image_averaged, 0, 255).astype(np.uint8)
+
+# # Tính MSE trên ảnh MÀU
+# mse = np.mean((image_float - image_denoised.astype(np.float32)) ** 2)
+
+# print(f"MSE đạt được: {mse:.4f}")
+
+# # Hiển thị
+# cv2.imshow('Anh Goc', image)
+# cv2.imshow('Anh Phuc Hoi', image_denoised)
+
+# cv2.waitKey(0)
+# cv2.destroyAllWindows()
