@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-image = cv2.imread("./data/4a47b89c0cd6457c8b7858c071b69071.png", cv2.IMREAD_UNCHANGED)
+image = cv2.imread("./data/bai2/4a47b89c0cd6457c8b7858c071b69071.png", cv2.IMREAD_UNCHANGED)
 
 alpha = image[:, :, 3]
 
