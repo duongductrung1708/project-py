@@ -30,7 +30,7 @@ path_string = " ".join(commands)
 
 # Ghi ra file SVG
 with open("./data/bai1/exe_1_contours.svg", "w") as f:
-    f.write(f'<svg viewBox="0 0 {image.shape[1]} {image.shape[0]}" xmlns="http://www.w3.org/2000/svg">\n <path d="{path_string}" fill="white" stroke="white" stroke-width="1"/>\n</svg>')
+    f.write(f'<svg viewBox="0 0 {image.shape[1]} {image.shape[0]}" xmlns="http://www.w3.org/2000/svg">\n <path d="{path_string}" fill="white" stroke="none"/>\n</svg>')
 
 # Chuyển SVG thành PNG
 cairosvg.svg2png(url="./data/bai1/exe_1_contours.svg", write_to="./data/bai1/exe_1_contours.png")
