@@ -25,7 +25,6 @@ else:
     device = "cpu"   # CPU
 tensor_ready = tensor_final.to(device)
 
-# Báo cáo kết quả cuối cùng cho sếp
 print("Shape cuối cùng:", tensor_ready.shape)
 print("Nơi xử lý hiện tại:", tensor_ready.device)
 
