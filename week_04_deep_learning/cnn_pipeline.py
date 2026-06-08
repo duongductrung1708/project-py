@@ -61,7 +61,9 @@ output_flatten = output_max.flatten(start_dim=1)
 
 print("Flatten output shape:", output_flatten.shape)
 
+# ==========================================
 # Classifier
+# ==========================================
 classifier = nn.Linear(
     in_features=output_flatten.shape[1],
     out_features=3
@@ -71,17 +73,60 @@ logits = classifier(output_flatten)
 
 print("Logits shape:", logits.shape)
 
+# ==========================================
 # Softmax
+# ==========================================
 softmax = nn.Softmax(dim=1)
-
 probabilities = softmax(logits)
 
 print("Probabilities:", probabilities)
 
-# Lấy class có xác suất cao nhất
 prediction = torch.argmax(
     probabilities,
     dim=1
 )
 
 print("Predicted class:", prediction.item())
+
+# ==========================================
+# GIẢ LẬP NHÃN THẬT
+# ==========================================
+target = torch.tensor([1])
+
+print("Ground Truth:", target.item())
+
+# ==========================================
+# LOSS FUNCTION
+# ==========================================
+criterion = nn.CrossEntropyLoss()
+
+loss = criterion(logits, target)
+
+print("Loss:", loss.item())
+
+# ==========================================
+# BACKPROPAGATION
+# ==========================================
+loss.backward()
+
+print("\nGradient của classifier.weight:")
+print(classifier.weight.grad)
+
+print("\nGradient của classifier.bias:")
+print(classifier.bias.grad)
+
+# ==========================================
+# OPTIMIZER
+# ==========================================
+optimizer = torch.optim.SGD(
+    classifier.parameters(),
+    lr=0.01
+)
+
+print("\nWeight trước update:")
+print(classifier.weight.data[0][:5])
+
+optimizer.step()
+
+print("\nWeight sau update:")
+print(classifier.weight.data[0][:5])
