@@ -153,7 +153,7 @@ optimizer = optim.Adam(
 )
 
 # Số lần quét toàn bộ tập train
-epochs = 15
+epochs = 10
 
 for epoch in range(epochs):
 
