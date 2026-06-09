@@ -1,0 +1,11 @@
+{
+    "status": "FAIL",
+    "iou": 0.980726,
+    "contours": 43,
+    "svg_points": 15313,
+    "pixels_missing": 0,
+    "pixels_added": 10294,
+    "svg_file_size_kb": 151.2,
+    "compression_ratio": 0.2389,
+    "processing_time_ms": 428.9
+}
