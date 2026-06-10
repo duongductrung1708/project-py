@@ -117,7 +117,7 @@ class Net(nn.Module):
         # Chuyển feature maps (64,64,7,7) thành vector (64,3136)
         x = torch.flatten(
             x,
-            start_dim=1
+            start_dim=1  # Bắt đầu flatten từ dimension 1 (batch_size, channels, height, width) -> (batch_size, features)
         )
 
         # Classifier: 3136 đặc trưng -> 10 logits (10 lớp FashionMNIST)
