@@ -46,7 +46,7 @@ test_loader = DataLoader(
     shuffle=False
 )
 
-# Tạo một Neural Network mới
+# Định nghĩa kiến trúc CNN (các layer + luồng dữ liệu từ ảnh đầu vào đến kết quả dự đoán)
 class Net(nn.Module):
 
     # Khai báo các layer
@@ -58,7 +58,7 @@ class Net(nn.Module):
         # Lớp Convolution đầu tiên: học 16 bộ lọc 3x3 để trích xuất đặc trưng từ ảnh đầu vào 1 kênh
         self.conv1 = nn.Conv2d(
             in_channels=1,      # Số channel đầu vào
-            out_channels=32,    # Số feature maps/kernel sẽ học
+            out_channels=32,    # Số feature maps/kernel sẽ học (32)
             kernel_size=3,      # Kích thước kernel (3x3)
             padding=1           # Thêm viền 0 để giữ nguyên H,W
         )
@@ -75,7 +75,7 @@ class Net(nn.Module):
         # Lớp Convolution thứ hai: học 32 bộ lọc 3x3 để trích xuất đặc trưng từ feature maps của conv1
         self.conv2 = nn.Conv2d(
             in_channels=32,     # Số channel đầu vào
-            out_channels=64,    # Số feature maps/kernel sẽ học
+            out_channels=64,    # Số feature maps/kernel sẽ học (64)
             kernel_size=3,      # Kích thước kernel (3x3)
             padding=1           # Thêm viền 0 để giữ nguyên H,W
         )
@@ -91,8 +91,8 @@ class Net(nn.Module):
 
         # Bộ phân loại cuối cùng: chuyển đặc trưng đã học thành điểm số cho 10 lớp FashionMNIST
         self.fc = nn.Linear(
-            64 * 7 * 7,         # Số feature maps sau flatten
-            10                  # Số class
+            64 * 7 * 7,         # Số feature maps sau flatten (64 * 7 * 7 = 3136)
+            10                  # Số class (10 lớp)
         )
 
     def forward(self, x):
@@ -269,3 +269,16 @@ print(
     f"\nTest Accuracy: "
     f"{test_accuracy:.2f}%"
 )
+
+# Epoch [1/10] Loss: 432.5802 Accuracy: 83.50%
+# Epoch [2/10] Loss: 287.8933 Accuracy: 88.95%
+# Epoch [3/10] Loss: 250.6999 Accuracy: 90.44%
+# Epoch [4/10] Loss: 226.7229 Accuracy: 91.30%
+# Epoch [5/10] Loss: 207.7484 Accuracy: 92.07%
+# Epoch [6/10] Loss: 192.4482 Accuracy: 92.52%
+# Epoch [7/10] Loss: 179.2946 Accuracy: 93.12%
+# Epoch [8/10] Loss: 167.9693 Accuracy: 93.55%
+# Epoch [9/10] Loss: 157.1818 Accuracy: 94.01%
+# Epoch [10/10] Loss: 146.1042 Accuracy: 94.35%
+
+# Test Accuracy: 91.76%
