@@ -114,16 +114,16 @@ class Net(nn.Module):
         # (64,32,7,7)
         x = self.pool2(x)
 
-        # (64,1568)
+        # Chuyển feature maps (64,64,7,7) thành vector (64,3136)
         x = torch.flatten(
             x,
             start_dim=1
         )
 
-        # (64,10)
+        # Classifier: 3136 đặc trưng -> 10 logits (10 lớp FashionMNIST)
         x = self.fc(x)
 
-        # Trả về logits
+        # Trả về logits cho CrossEntropyLoss và dự đoán class
         return x
 
 device = (
