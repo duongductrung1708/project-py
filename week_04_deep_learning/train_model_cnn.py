@@ -32,18 +32,17 @@ test_dataset = datasets.FashionMNIST(
 )
 
 # Mỗi lần lấy 64 ảnh
-# shuffle=True để tránh học thuộc thứ tự dữ liệu
 train_loader = DataLoader(
     train_dataset,
     batch_size=64,
-    shuffle=True
+    shuffle=True # shuffle=True để tránh học thuộc thứ tự dữ liệu
 )
 
 # Test không cần shuffle
 test_loader = DataLoader(
     test_dataset,
     batch_size=64,
-    shuffle=False
+    shuffle=False # shuffle=False để giữ nguyên thứ tự dữ liệu test
 )
 
 # Định nghĩa kiến trúc CNN (các layer + luồng dữ liệu từ ảnh đầu vào đến kết quả dự đoán)
@@ -146,10 +145,10 @@ print(model)
 # Bài toán Classification -> CrossEntropyLoss
 criterion = nn.CrossEntropyLoss()
 
-# Adam tự động điều chỉnh learning rate
+# Adam dùng gradient từ Backpropagation để cập nhật toàn bộ trọng số của CNN
 optimizer = optim.Adam(
-    model.parameters(),
-    lr=0.001
+    model.parameters(),  # Toàn bộ weight và bias cần học trong CNN
+    lr=0.001             # Learning Rate: tốc độ cập nhật trọng số mỗi bước
 )
 
 # Số lần quét toàn bộ tập train
