@@ -100,6 +100,7 @@ class Net(nn.Module):
             padding=1
         )
 
+        # Batch Normalization để ổn định và tăng tốc training
         self.bn1 = nn.BatchNorm2d(64)
 
         self.conv2 = nn.Conv2d(
@@ -109,6 +110,7 @@ class Net(nn.Module):
             padding=1
         )
 
+        # Batch Normalization để ổn định và tăng tốc training
         self.bn2 = nn.BatchNorm2d(64)
 
         self.pool1 = nn.MaxPool2d(
@@ -123,6 +125,7 @@ class Net(nn.Module):
             padding=1
         )
 
+        # Batch Normalization để ổn định và tăng tốc training
         self.bn3 = nn.BatchNorm2d(128)
 
         self.conv4 = nn.Conv2d(
@@ -132,6 +135,7 @@ class Net(nn.Module):
             padding=1
         )
 
+        # Batch Normalization để ổn định và tăng tốc training
         self.bn4 = nn.BatchNorm2d(128)
 
         self.pool2 = nn.MaxPool2d(
@@ -146,6 +150,7 @@ class Net(nn.Module):
             padding=1
         )
 
+        # Batch Normalization để ổn định và tăng tốc training
         self.bn5 = nn.BatchNorm2d(256)
 
         self.conv6 = nn.Conv2d(
@@ -155,6 +160,7 @@ class Net(nn.Module):
             padding=1
         )
 
+        # Batch Normalization để ổn định và tăng tốc training
         self.bn6 = nn.BatchNorm2d(256)
 
         self.pool3 = nn.MaxPool2d(
@@ -162,16 +168,19 @@ class Net(nn.Module):
             stride=2
         )
 
+        # Dropout 50% số neurons để giảm overfitting
         self.dropout = nn.Dropout(0.5)
 
+        # Fully Connected Layer 1 để giảm chiều dữ liệu
         self.fc1 = nn.Linear(
-            256 * 4 * 4,
-            512
+            256 * 4 * 4, # 256 * 4 * 4 = 4096 = 2^12
+            512 # 4096 -> 512 = 2^9
         )
 
+        # Fully Connected Layer 2 để phân loại 10 classes
         self.fc2 = nn.Linear(
-            512,
-            10
+            512, # 512 -> 10
+            10 # 10 classes
         )
 
     def forward(self, x):
