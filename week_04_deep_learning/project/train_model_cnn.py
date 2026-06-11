@@ -12,6 +12,8 @@ from torch.utils.data import DataLoader
 import random
 import numpy as np
 
+import time
+
 def set_seed(seed=42):
     # Cố định random của Python
     random.seed(seed)
@@ -295,6 +297,8 @@ scheduler = optim.lr_scheduler.CosineAnnealingLR(
 
 for epoch in range(epochs):
 
+    start_time = time.time()
+
     # Chuyển model sang chế độ huấn luyện
     model.train()
 
@@ -354,12 +358,16 @@ for epoch in range(epochs):
         correct / total
     ) * 100
 
+    end_time = time.time()
+    epoch_duration = end_time - start_time
+
     # In kết quả sau mỗi epoch
     print(
         f"Epoch [{epoch+1}/{epochs}] "
         f"Loss: {running_loss:.4f} "
         f"Accuracy: {accuracy:.2f}% "
-        f"LR: {optimizer.param_groups[0]['lr']:.6f}"
+        f"LR: {optimizer.param_groups[0]['lr']:.6f} "
+        f"Time: {epoch_duration:.2f}s"
     )
 
     # Giảm learning rate theo lịch đã định
@@ -411,66 +419,3 @@ print(
     f"\nTest Accuracy: "
     f"{test_accuracy:.2f}%"
 )
-
-# Epoch [1/60] Loss: 682.7136 Accuracy: 35.07%LR: 0.001000
-# Epoch [2/60] Loss: 537.1317 Accuracy: 50.36%LR: 0.000999
-# Epoch [3/60] Loss: 466.4740 Accuracy: 57.70%LR: 0.000997
-# Epoch [4/60] Loss: 421.4205 Accuracy: 62.31%LR: 0.000994
-# Epoch [5/60] Loss: 383.9298 Accuracy: 65.72%LR: 0.000989
-# Epoch [6/60] Loss: 359.6384 Accuracy: 68.22%LR: 0.000983
-# Epoch [7/60] Loss: 335.3818 Accuracy: 70.67%LR: 0.000976
-# Epoch [8/60] Loss: 317.2416 Accuracy: 72.41%LR: 0.000967
-# Epoch [9/60] Loss: 295.7631 Accuracy: 74.44%LR: 0.000957
-# Epoch [10/60] Loss: 278.2056 Accuracy: 75.98%LR: 0.000946
-# Epoch [11/60] Loss: 265.7827 Accuracy: 77.52%LR: 0.000933
-# Epoch [12/60] Loss: 252.1447 Accuracy: 78.52%LR: 0.000919
-# Epoch [13/60] Loss: 244.2352 Accuracy: 79.41%LR: 0.000905
-# Epoch [14/60] Loss: 230.5095 Accuracy: 80.80%LR: 0.000889
-# Epoch [15/60] Loss: 221.8481 Accuracy: 81.32%LR: 0.000872
-# Epoch [16/60] Loss: 210.0017 Accuracy: 82.25%LR: 0.000854
-# Epoch [17/60] Loss: 201.6660 Accuracy: 83.14%LR: 0.000835
-# Epoch [18/60] Loss: 194.8357 Accuracy: 83.73%LR: 0.000815
-# Epoch [19/60] Loss: 186.9213 Accuracy: 84.52%LR: 0.000794
-# Epoch [20/60] Loss: 180.4672 Accuracy: 84.91%LR: 0.000772
-# Epoch [21/60] Loss: 172.6788 Accuracy: 85.60%LR: 0.000750
-# Epoch [22/60] Loss: 165.3752 Accuracy: 86.07%LR: 0.000727
-# Epoch [23/60] Loss: 163.0889 Accuracy: 86.41%LR: 0.000703
-# Epoch [24/60] Loss: 157.9768 Accuracy: 86.80%LR: 0.000679
-# Epoch [25/60] Loss: 149.2430 Accuracy: 87.50%LR: 0.000655
-# Epoch [26/60] Loss: 145.8665 Accuracy: 87.88%LR: 0.000629
-# Epoch [27/60] Loss: 140.8285 Accuracy: 88.07%LR: 0.000604
-# Epoch [28/60] Loss: 135.4309 Accuracy: 88.63%LR: 0.000578
-# Epoch [29/60] Loss: 130.8284 Accuracy: 88.95%LR: 0.000552
-# Epoch [30/60] Loss: 125.1504 Accuracy: 89.51%LR: 0.000526
-# Epoch [31/60] Loss: 120.3365 Accuracy: 89.78%LR: 0.000500
-# Epoch [32/60] Loss: 118.3269 Accuracy: 89.94%LR: 0.000474
-# Epoch [33/60] Loss: 112.5515 Accuracy: 90.47%LR: 0.000448
-# Epoch [34/60] Loss: 108.7452 Accuracy: 90.82%LR: 0.000422
-# Epoch [35/60] Loss: 106.9869 Accuracy: 90.88%LR: 0.000396
-# Epoch [36/60] Loss: 101.7450 Accuracy: 91.16%LR: 0.000371
-# Epoch [37/60] Loss: 97.1260 Accuracy: 91.70%LR: 0.000345
-# Epoch [38/60] Loss: 96.2259 Accuracy: 91.71%LR: 0.000321
-# Epoch [39/60] Loss: 89.0087 Accuracy: 92.32%LR: 0.000297
-# Epoch [40/60] Loss: 90.5617 Accuracy: 92.30%LR: 0.000273
-# Epoch [41/60] Loss: 87.0091 Accuracy: 92.53%LR: 0.000250
-# Epoch [42/60] Loss: 85.2585 Accuracy: 92.70%LR: 0.000228
-# Epoch [43/60] Loss: 81.9008 Accuracy: 92.92%LR: 0.000206
-# Epoch [44/60] Loss: 79.8141 Accuracy: 93.16%LR: 0.000185
-# Epoch [45/60] Loss: 76.8900 Accuracy: 93.47%LR: 0.000165
-# Epoch [46/60] Loss: 75.6861 Accuracy: 93.46%LR: 0.000146
-# Epoch [47/60] Loss: 72.9269 Accuracy: 93.60%LR: 0.000128
-# Epoch [48/60] Loss: 71.1708 Accuracy: 93.85%LR: 0.000111
-# Epoch [49/60] Loss: 70.4553 Accuracy: 93.85%LR: 0.000095
-# Epoch [50/60] Loss: 68.1443 Accuracy: 94.03%LR: 0.000081
-# Epoch [51/60] Loss: 65.8028 Accuracy: 94.25%LR: 0.000067
-# Epoch [52/60] Loss: 66.4551 Accuracy: 94.16%LR: 0.000054
-# Epoch [53/60] Loss: 64.1856 Accuracy: 94.47%LR: 0.000043
-# Epoch [54/60] Loss: 65.0463 Accuracy: 94.32%LR: 0.000033
-# Epoch [55/60] Loss: 63.8808 Accuracy: 94.57%LR: 0.000024
-# Epoch [56/60] Loss: 63.0544 Accuracy: 94.45%LR: 0.000017
-# Epoch [57/60] Loss: 63.4248 Accuracy: 94.42%LR: 0.000011
-# Epoch [58/60] Loss: 63.9659 Accuracy: 94.49%LR: 0.000006
-# Epoch [59/60] Loss: 62.9502 Accuracy: 94.51%LR: 0.000003
-# Epoch [60/60] Loss: 62.2668 Accuracy: 94.60%LR: 0.000001
-
-# Test Accuracy: 91.02%
